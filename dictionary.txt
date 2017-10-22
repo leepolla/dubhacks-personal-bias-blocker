@@ -184,12 +184,6 @@ Latina
 Latino
 Hispanic
 Afro
-He
-She
-His
-Hers
-Him
-Her
 Nationalist
 Nationalists
 Anarchist
