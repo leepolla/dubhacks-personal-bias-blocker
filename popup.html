@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title></title>
+		<title>Personal Bias Blocker</title>
 		<link rel="stylesheet" type="text/css" href="popup.css">
 		<link rel="shortcut icon" type="image/png" href="biaslogo.png">
+		<script src="popup.js" type="text/javascript"></script>
 	</head>
 	<body>
 		<header>Personal Bias Blocker</header>
 		<div id="toggleButton">
 			<h2>Turn Blocker On/Off</h2>
 		    <div class="onoffswitch">
-	        	<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked >
+	        	<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch">
 	        	<label class="onoffswitch-label" for="myonoffswitch">
 	            	<span class="onoffswitch-inner"></span>
-	            	<span class="onoffswitch-switch" tabindex="0"></span>
+	            	<span class="onoffswitch-switch" id="focus" tabindex="0"></span>
 	        	</label>
     		</div>
     	</div>
