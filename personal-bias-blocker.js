@@ -61,7 +61,6 @@ function senseReplace() {
 	changes.forEach(function(change) {
 		change.addEventListener("mouseover", function(){
 			var temp = change.innerHTML;
-			console.log(change.value);
 			change.innerHTML = change.attributes.value.value;
 			change.attributes.value.value = temp;
 		});
@@ -70,7 +69,6 @@ function senseReplace() {
 	changes.forEach(function(change) {
 		change.addEventListener("mouseout", function(){
 			var temp = change.innerHTML;
-			console.log(change.value);
 			change.innerHTML = change.attributes.value.value;
 			change.attributes.value.value = temp;
 		});
