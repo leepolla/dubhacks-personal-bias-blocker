@@ -25,7 +25,7 @@ function nodeReplace(node) {
 function textReplace(textNode) {
   let content = textNode.nodeValue;
   dictionary.forEach(function(bias) {
-    content = content.split(bias).join(`<span class=${dictionary.indexOf(word)}`);
+    content = content.split(bias).join(`<span class=${dictionary.indexOf(bias)}`);
   });
   content.nodeValue = content;
 }
