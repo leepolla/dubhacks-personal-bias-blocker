@@ -3,6 +3,7 @@ var dictionary = importDictionary("dictionary.json");
 var wackyDict = importDictionary("wacky-dictionary.json");
 
 var replacements = importDictionary("replacements.json");
+var message;
 
 nodeReplace(document.body);
 senseReplaceHover('replaced');
@@ -13,6 +14,7 @@ chrome.runtime.onMessage.addListener(
     console.log(sender.tab ?
                 "from a content script:" + sender.tab.url :
                 "from the extension");
+	message = request;
     if (request.greeting == "hello")
       sendResponse({farewell: "goodbye"});
   });
