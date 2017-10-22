@@ -23,17 +23,19 @@ function keypress(event){
 
 //console.log(document.getElementsByClassName("onoffswitch"));
 var toggleSwitch = document.getElementsByClassName("onoffswitch-checkbox")[0];
-var message = {greeting: "hello", onoff: true, wacky: "off"};
+var message = {greeting: "hello", onoff: true, wacky: false};
 console.log(toggleSwitch);
-document.getElementById('myonoffswitch').addEventListener('click', function(){
-		console.log("test");
-		
-			console.log(message);
-			message.onoff = !message.onoff;
-			console.log("checked/unchecked");
-	    
-});
 
+if (document.getElementById("myonoffswitch")) {
+	document.getElementById('myonoffswitch').addEventListener('click', function(){
+			console.log("test");
+			
+				console.log(message);
+				message.onoff = !message.onoff;
+				console.log("checked/unchecked");
+			
+	});
+}
 chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
   chrome.tabs.sendMessage(tabs[0].id, message, function(response) {
     console.log(response.farewell);
