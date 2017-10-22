@@ -2,5 +2,9 @@
   // Required
   "manifest_version": 2,
   "name": "My Extension",
-  "version": "versionString"
+  "version": "versionString",
+  "browser_action": {
+  	"default_title": "Personal Bias Blocker",
+  	"default_popup": "popup.html"
+  }
 }
