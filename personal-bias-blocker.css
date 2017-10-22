@@ -1,0 +1,8 @@
+.blocked {
+	color: black;
+	background-color: black;
+}
+
+.blocked: hover {
+	color: white;
+}
