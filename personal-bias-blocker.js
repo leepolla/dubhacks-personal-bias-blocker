@@ -3,20 +3,40 @@ var wackyDict = importDictionary("wacky-dictionary.json");
 
 var replacements = importDictionary("replacements.json");
 var message;
-
-nodeReplace(document.body);
-senseReplaceHover('replaced');
-senseReplaceHover('blocked');
-
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
     console.log(sender.tab ?
                 "from a content script:" + sender.tab.url :
                 "from the extension");
 	message = request;
-    if (request.greeting == "hello")
+    if (request.greeting == "hello") {
       sendResponse({farewell: "goodbye"});
+	}
+	if (request.onoff == true) {
+		nodeReplace(document.body);
+		senseReplaceHover('replaced');
+		senseReplaceHover('blocked');
+	}
+	if (request.onoff == false) {
+
+	
+		var changes = document.querySelectorAll(".replaced, .blocked");
+	//mouseover
+	changes.forEach(function(change) {
+			var temp = change.innerHTML;
+			if (temp.length > change.attributes.value.value.length) {
+				change.attributes.value.value += "&nbsp;".repeat(temp.length - change.attributes.value.value.length);
+			}
+			change.innerHTML = change.attributes.value.value;
+			change.attributes.value.value = temp;
+	});
+	
+	
+	}
   });
+
+
+
 
 function nodeReplace(node) {
   let child, next;
@@ -39,13 +59,13 @@ function nodeReplace(node) {
 }
 
 function textReplace(textNode) {
-  const wackyMode = true;
+  //const wackyMode = true;
   let content = textNode.innerHTML;
   Object.keys(dictionary).forEach(function(biasCategoryName) {
     dictionary[biasCategoryName].forEach(function(bias) {
       let replacementWord = bias;
       let show = '';
-      if (wackyMode) {
+      if (message.wacky) {
         show = 'showBlocked';
         const wackyCategory = wackyDict[biasCategoryName];
         replacementWord = wackyCategory[Math.floor(Math.random()*wackyCategory.length)];
@@ -102,15 +122,7 @@ nodeReplace(document.body);
 senseReplaceHover('replaced');
 senseReplaceHover('blocked');
 
-chrome.runtime.onMessage.addListener(
-  function(request, sender, sendResponse) {
-    console.log(sender.tab ?
-                "from a content script:" + sender.tab.url :
-                "from the extension");
-	message = request;
-    if (request.greeting == "hello")
-      sendResponse({farewell: "goodbye"});
-  });
+
 
 function nodeReplace(node) {
   let child, next;
