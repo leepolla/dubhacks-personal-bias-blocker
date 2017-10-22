@@ -23,7 +23,7 @@ function keypress(event){
 
 //console.log(document.getElementsByClassName("onoffswitch"));
 var toggleSwitch = document.getElementsByClassName("onoffswitch-checkbox")[0];
-var message = {greeting: "hello", onoff: true, wacky: "off"};
+var message = {greeting: "hello", onoff: true, wacky: false};
 console.log(toggleSwitch);
 
 if (document.getElementById("myonoffswitch")) {
