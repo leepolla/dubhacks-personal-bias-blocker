@@ -58,7 +58,7 @@ function textReplace(textNode) {
     dictionary[biasCategoryName].forEach(function(bias) {
       let replacementWord = bias;
       let show = '';
-      if (localStorage.getItem('wacky')) {
+      if (localStorage.getItem('wacky') == 'true') {
         show = 'showBlocked';
         const wackyCategory = wackyDict[biasCategoryName];
         replacementWord = wackyCategory[Math.floor(Math.random()*wackyCategory.length)];
@@ -111,5 +111,5 @@ function importDictionary(filename) {
   xhr.open('GET', chrome.runtime.getURL(filename), false);
   xhr.send();
   return JSON.parse(xhr.responseText);
-}var dictionary = importDictionary("dictionary.json");
+}
 
