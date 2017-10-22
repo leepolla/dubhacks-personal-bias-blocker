@@ -23,7 +23,7 @@ h2, h3 {
 	font-weight: normal;
 }
 
-#censorList:focus, #censorList:hover, #help a:focus, #help a:hover, .mode:hover, .mode:focus {
+#censorList a:focus, #censorList a:hover, #help a:focus, #help a:hover, .mode:hover, .mode:focus {
 	background-color: khaki;
 	color: black;
 	outline: none;
