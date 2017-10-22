@@ -1,3 +1,14 @@
+a {
+	color: white;
+	text-decoration: none;
+}
+
+a:focus, a:hover {
+	background-color: khaki;
+	color: black;
+	outline: none;
+}
+
 body {
 	width: 200px;
 	background-color: mediumorchid;

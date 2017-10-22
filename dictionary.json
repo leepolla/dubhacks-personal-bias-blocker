@@ -25,14 +25,11 @@
 	"affluent",
 	"wealthy",
 	"rich",
-	"African",
 	"African-American",
 	"White",
 	"Caucasian",
 	"Hispanic",
-	"Afro",
-	"Nationalist",
-	"Anarchist",
+	"Nationalistic",
 	"Nazi",
     "Afghan",
     "Argentine",
@@ -110,10 +107,7 @@
 	"Uruguayan",
 	"Venezuelan",
 	"Vietnamese",
-	"Welsh",
-	"Hairy",
-    "Swagalicious",
-    "Green"
+	"Welsh"
   ],
   "Countries": [
 	"Afghanistan",
@@ -188,29 +182,18 @@
 	"United States",
 	"Venezuela",
 	"Vietnam",
-	"Wales",
-	"Krypton"
+	"Wales"
   ],
   "Nouns": [
 	"Democrat",
 	"Democrats",
-	"Republican",
 	"Republicans",
-	"Black",
-	"African",
-	"African-American",
-	"White",
-	"Caucasian",
+	"African-Americans",
 	"Latina",
-	"Latino",
-	"Hispanic",
-	"Afro",
 	"Nationalist",
 	"Nationalists",
 	"Anarchist",
 	"Anarchists",
-	"Nazi",
-	"Nazis",
-	"Tiger"
+	"Nazis"
   ]
 }
