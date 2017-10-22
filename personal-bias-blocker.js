@@ -1,6 +1,14 @@
 
 const dictionary = importDictionary("dictionary.txt");
-var replacements = importReplacements("replacements.txt");
+
+var replacements = {
+	"he":"they", "she": "they",
+	"his": "their", "her": "their",
+	"him": "them", "her": "them",
+	"boy": "person", "girl": "person", "man": "person", "woman": "person",
+	"girls": "people", "women": "people", "men" : "people", "boys" : "people"
+	
+};
 
 nodeReplace(document.body, dictionary);
 senseReplace();
@@ -71,11 +79,4 @@ function importDictionary(filename) {
   xhr.open('GET', chrome.runtime.getURL(filename), false);
   xhr.send();
   return xhr.responseText.split("\r\n");
-}
-
-function importDictionary(filename) {
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', chrome.runtime.getURL(filename), false);
-  xhr.send();
-  return JSON.pars(xhr.responseText);
 }
