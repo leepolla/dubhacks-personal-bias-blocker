@@ -18,7 +18,7 @@ chrome.runtime.onMessage.addListener(
 		senseReplaceHover('blocked');
 	}
 	if (request.onoff == false) {
-
+		console.log("undo stuff plz");
 	
 		var changes = document.querySelectorAll(".replaced, .blocked");
 	//mouseover
@@ -29,6 +29,8 @@ chrome.runtime.onMessage.addListener(
 			}
 			change.innerHTML = change.attributes.value.value;
 			change.attributes.value.value = temp;
+			change.classList.remove("replaced");
+			change.classList.remove("blocked");
 	});
 	
 	

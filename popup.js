@@ -17,6 +17,7 @@ function keypress(event){
     } else {
         return false;
     }
+	update();
 }
 
 
@@ -24,20 +25,24 @@ function keypress(event){
 //console.log(document.getElementsByClassName("onoffswitch"));
 var toggleSwitch = document.getElementsByClassName("onoffswitch-checkbox")[0];
 var message = {greeting: "hello", onoff: true, wacky: false};
-console.log(toggleSwitch);
+update();
 
 if (document.getElementById("myonoffswitch")) {
 	document.getElementById('myonoffswitch').addEventListener('click', function(){
 			console.log("test");
 			
-				console.log(message);
-				message.onoff = !message.onoff;
+				console.log(this.checked);
+				message.onoff = this.checked;
 				console.log("checked/unchecked");
-			
+			update();
 	});
 }
-chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-  chrome.tabs.sendMessage(tabs[0].id, message, function(response) {
-    console.log(response.farewell);
-  });
-});
+
+
+function update() {
+	chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+	  chrome.tabs.sendMessage(tabs[0].id, message, function(response) {
+		console.log(response.farewell);
+	  });
+	});
+}
