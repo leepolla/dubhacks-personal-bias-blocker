@@ -10,6 +10,9 @@
     "js": ["personal-bias-blocker.js"]
   }],
 
+  "permissions": [
+	"tabs"
+	],
 
   "browser_action": {
   	"default_title": "Personal Bias Blocker",
