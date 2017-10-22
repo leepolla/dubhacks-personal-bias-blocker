@@ -1,3 +1,4 @@
+
 var dictionary = importDictionary("dictionary.json");
 var wackyDict = importDictionary("wacky-dictionary.json");
 
@@ -12,6 +13,9 @@ chrome.runtime.onMessage.addListener(
 );
 
 
+nodeReplace(document.body);
+senseReplaceHover('replaced');
+senseReplaceHover('blocked');
 
 
 function nodeReplace(node) {
@@ -43,7 +47,7 @@ function textReplace(textNode) {
     dictionary[biasCategoryName].forEach(function(bias) {
       let replacementWord = bias;
       let show = '';
-      if (message.wacky) {
+      if (localStorage.getItem('wacky')) {
         show = 'showBlocked';
         const wackyCategory = wackyDict[biasCategoryName];
         replacementWord = wackyCategory[Math.floor(Math.random()*wackyCategory.length)];
