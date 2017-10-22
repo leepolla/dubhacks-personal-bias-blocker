@@ -4,7 +4,6 @@
   "version": "0.1",
   "description": "Extension hides information that could promote personal bias",
   
-  
   "content_scripts": [{
     "matches": ["<all_urls>"],
     "css": ["personal-bias-blocker.css"],
