@@ -2,5 +2,12 @@
   // Required
   "manifest_version": 2,
   "name": "My Extension",
-  "version": "versionString"
+  "version": "versionString",
+  "description": "Extension hides information that could promote personal bias",
+  
+  "content_scripts": [{
+	"css": ["personal-bias-blocker.css"],
+	"js": ["personal-bias-blocker.js"]
+  }]
+
 }
