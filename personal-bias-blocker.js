@@ -5,7 +5,8 @@ var wackyDict = importDictionary("wacky-dictionary.json");
 var replacements = importDictionary("replacements.json");
 
 nodeReplace(document.body);
-senseReplace();
+senseReplaceHover('replaced');
+senseReplaceHover('blocked');
 
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
@@ -42,12 +43,14 @@ function textReplace(textNode) {
   Object.keys(dictionary).forEach(function(biasCategoryName) {
     dictionary[biasCategoryName].forEach(function(bias) {
       let replacementWord = bias;
+      let show = '';
       if (wackyMode) {
+        show = 'showBlocked';
         const wackyCategory = wackyDict[biasCategoryName];
         replacementWord = wackyCategory[Math.floor(Math.random()*wackyCategory.length)];
       }
       const regex = new RegExp(`\\b${bias}\\b`, 'i');
-      content = content.replace(regex, `<span class='blocked' value='${bias}'>${replacementWord}</span>`);
+      content = content.replace(regex, `<span class='blocked ${show}' value='${bias}'>${replacementWord}</span>`);
     });
   });
   Object.keys(replacements).forEach(function(bias) {
@@ -60,8 +63,8 @@ function textReplace(textNode) {
 
 
 
-function senseReplace() {
-	var changes = document.querySelectorAll(".replaced");
+function senseReplaceHover(className) {
+	var changes = document.querySelectorAll(`.${className}`);
 	//mouseover
 	changes.forEach(function(change) {
 		change.addEventListener("mouseover", function(){
