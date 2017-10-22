@@ -1,9 +1,5 @@
 
-const dictionary = [
-  'American',
-  'North Korea',
-  'Latino'
-];
+const dictionary = importDictionary("dictionary.txt");
 
 var replacements = {
 	"he":"they", "she": "they",
@@ -76,4 +72,11 @@ function senseReplace() {
 			change.attributes.value.value = temp;
 		});
 	});
+}
+
+function importDictionary(filename) {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', chrome.runtime.getURL(filename), false);
+  xhr.send();
+  return xhr.responseText.split("\r\n");
 }

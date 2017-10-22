@@ -17,5 +17,10 @@
     "default_icon" : {
       "16": "biaslogo.png"
     }
-  }
+  },
+
+  "web_accessible_resources": [
+    "dictionary.txt",
+    "replacements.txt"
+  ]
 }
