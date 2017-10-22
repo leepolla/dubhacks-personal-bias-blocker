@@ -6,3 +6,8 @@
 .blocked: hover {
 	color: white;
 }
+
+.replaced {
+	background-color:yellow;
+	color: black;
+}
