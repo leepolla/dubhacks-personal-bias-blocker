@@ -1,6 +1,6 @@
 
 const dictionary = importDictionary("dictionary.txt");
-var replacements = importDictionary("replacements.txt");
+var replacements = importReplacements("replacements.txt");
 
 nodeReplace(document.body, dictionary);
 senseReplace();
@@ -71,4 +71,11 @@ function importDictionary(filename) {
   xhr.open('GET', chrome.runtime.getURL(filename), false);
   xhr.send();
   return xhr.responseText.split("\r\n");
+}
+
+function importDictionary(filename) {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', chrome.runtime.getURL(filename), false);
+  xhr.send();
+  return JSON.pars(xhr.responseText);
 }
