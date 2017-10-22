@@ -1,26 +1,35 @@
-nodeReplace(document.body);
 
-function nodeReplace(node) {
+const dictionary = [
+  'American',
+  'North Korea'
+];
+
+nodeReplace(document.body, dictionary);
+
+function nodeReplace(node, dictionary) {
   let child, next;
+  console.log(node);
 
   if (node.tagName.toLowerCase() == 'input' || node.tagName.toLowerCase() == 'textarea') { return; };
 
   switch (node.nodeType) {
+    case 1:
+    case 9:
     case 3:
-      textReplace(node)
+      textReplace(node, dictionary);
+      break;
     case 11:
       child = node.firstChild;
       while (child) {
         next = child.nextSibling;
-        nodeReplace(child);
+        nodeReplace(child, dictionary);
         child = next;
       }
       return;
-    default: return;
   }
 }
 
-function textReplace(textNode) {
+function textReplace(textNode, dictionary) {
   let content = textNode.nodeValue;
   console.log('ayy');
   dictionary.forEach(function(bias) {
@@ -28,8 +37,3 @@ function textReplace(textNode) {
   });
   content.nodeValue = content;
 }
-
-const dictionary = [
-  'American',
-  'North Korea'
-];
