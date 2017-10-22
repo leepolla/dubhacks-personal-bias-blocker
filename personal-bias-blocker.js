@@ -1,20 +1,15 @@
 
-const dictionary = importDictionary("dictionary.txt");
+const dictionary = importDictionary("dictionary.json");
+const wackyDict = importDictionary("wacky-dictionary.json");
 
-var replacements = {
-	"he":"they", "she": "they",
-	"his": "their", "her": "their",
-	"him": "them", "her": "them",
-	"boy": "person", "girl": "person", "man": "person", "woman": "person",
-	"girls": "people", "women": "people", "men" : "people", "boys" : "people"
-	
-};
+const replacements = importDictionary("replacements.json");
 
 nodeReplace(document.body, dictionary);
 senseReplace();
 
 function nodeReplace(node, dictionary) {
   let child, next;
+  let wackyMode = true;
 
   switch (node.nodeType) {
     case 1:
@@ -35,9 +30,15 @@ function nodeReplace(node, dictionary) {
 
 function textReplace(textNode, dictionary) {
   let content = textNode.innerHTML;
-  dictionary.forEach(function(bias) {
-    const regex = new RegExp(`\\b${bias}\\b`, 'i');
-    content = content.replace(regex, `<span class='blocked ${dictionary.indexOf(bias)}'>${bias}</span>`);
+  Object.keys(dictionary).forEach(function(biasCategoryName) {
+    dictionary[biasCategoryName].forEach(function(bias) {
+      let replacementWord = bias;
+      if (wackyMode) {
+
+      }
+      const regex = new RegExp(`\\b${bias}\\b`, 'i');
+      content = content.replace(regex, `<span class='blocked'>${replacementWord}</span>`);
+    });
   });
   Object.keys(replacements).forEach(function(bias) {
     const regex = new RegExp(`\\b${bias}\\b`, 'i');
@@ -47,9 +48,7 @@ function textReplace(textNode, dictionary) {
   textNode.innerHTML = content;
 }
 
-function originalWord() {
-	
-}
+
 
 function senseReplace() {
 	var changes = document.querySelectorAll(".replaced");
@@ -78,5 +77,5 @@ function importDictionary(filename) {
   var xhr = new XMLHttpRequest();
   xhr.open('GET', chrome.runtime.getURL(filename), false);
   xhr.send();
-  return xhr.responseText.split("\r\n");
+  return JSON.parse(xhr.responseText);
 }

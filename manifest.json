@@ -20,7 +20,8 @@
   },
 
   "web_accessible_resources": [
-    "dictionary.txt",
-    "replacements.txt"
+    "dictionary.json",
+    "replacements.json",
+    "wacky-dictionary.json"
   ]
 }

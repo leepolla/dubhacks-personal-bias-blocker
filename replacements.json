@@ -1,0 +1,8 @@
+{
+	"he":"they", "she": "they",
+	"his": "their", "her": "their",
+	"him": "them",
+	"boy": "person", "girl": "person", "man": "person", "woman": "person",
+	"girls": "people", "women": "people", "men" : "people", "boys" : "people"
+	
+}
