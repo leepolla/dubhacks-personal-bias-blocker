@@ -2,14 +2,13 @@
 const dictionary = [
   'American',
   'North Korea',
-  'NO'
+  'Latino'
 ];
 
 nodeReplace(document.body, dictionary);
 
 function nodeReplace(node, dictionary) {
   let child, next;
-  console.log(node);
 
   // if (node.tagName.toLowerCase() == 'input' || node.tagName.toLowerCase() == 'textarea') { return; };
 
@@ -25,15 +24,15 @@ function nodeReplace(node, dictionary) {
       }
       break;
     case 3:
-      textReplace(node, dictionary);
+      textReplace(node.parentNode, dictionary);
       break;
   }
 }
 
 function textReplace(textNode, dictionary) {
-  let content = textNode.nodeValue;
+  let content = textNode.innerHTML;
   dictionary.forEach(function(bias) {
-    content = content.split(bias).join(`<span class=${dictionary.indexOf(bias)}`);
+    content = content.split(bias).join(`<span class='${dictionary.indexOf(bias)}'>${bias}</span>`);
   });
-  textNode.nodeValue = content;
+  textNode.innerHTML = content;
 }
