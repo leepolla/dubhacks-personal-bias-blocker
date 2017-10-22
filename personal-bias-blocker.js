@@ -25,8 +25,6 @@ nodeReplace(document.body, dictionary);
 function nodeReplace(node, dictionary) {
   let child, next;
 
-  // if (node.tagName.toLowerCase() == 'input' || node.tagName.toLowerCase() == 'textarea') { return; };
-
   switch (node.nodeType) {
     case 1:
     case 9:
