@@ -17,7 +17,8 @@ chrome.runtime.onMessage.addListener(
 	message = request;
     if (request.greeting == "hello")
       sendResponse({farewell: "goodbye"});
-  });
+  }
+);
 
 function nodeReplace(node) {
   let child, next;
@@ -40,12 +41,13 @@ function nodeReplace(node) {
 }
 
 function textReplace(textNode) {
-  const wackyMode = true;
+  const wackyMode = false;
   let content = textNode.innerHTML;
   Object.keys(dictionary).forEach(function(biasCategoryName) {
     dictionary[biasCategoryName].forEach(function(bias) {
+      console.log(bias);
       let replacementWord = bias;
-      let show = '';
+      let show = "";
       if (wackyMode) {
         show = 'showBlocked';
         const wackyCategory = wackyDict[biasCategoryName];
