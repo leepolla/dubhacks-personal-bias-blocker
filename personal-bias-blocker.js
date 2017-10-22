@@ -1,6 +1,6 @@
 
 const dictionary = importDictionary("dictionary.json");
-const wackyDict = importDictionary("wacky-dictionary.json");
+//const wackyDict = importDictionary("wacky-dictionary.json");
 
 const replacements = importDictionary("replacements.json");
 
@@ -42,9 +42,9 @@ function textReplace(textNode, dictionary) {
   Object.keys(dictionary).forEach(function(biasCategoryName) {
     dictionary[biasCategoryName].forEach(function(bias) {
       let replacementWord = bias;
-      if (wackyMode) {
+      //if (wackyMode) {
 
-      }
+      //}
       const regex = new RegExp(`\\b${bias}\\b`, 'i');
       content = content.replace(regex, `<span class='blocked'>${replacementWord}</span>`);
     });
