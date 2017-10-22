@@ -11,10 +11,14 @@ var replacementDict = [
   'webpage'
 ];
 
-var replacements = {};
-replacements["he"] = "they";
-replacements["him"] = "them";
-replacements["webpage"] = "website";
+var replacements = {
+	"he": :"they", "she": "they",
+	"his": "their", "her": "their",
+	"him": "them", "her": "them",
+	"boy": "person", "girl": "person", "man": "person", "woman": "person",
+	"girls": "people", "women": "people", "men" : "people", "boys" : "people"
+	
+};
 
 nodeReplace(document.body, dictionary);
 
