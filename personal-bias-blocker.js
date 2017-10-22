@@ -5,14 +5,10 @@ const dictionary = [
   'Latino'
 ];
 
-var replacementDict = [
-  'he',
-  'him',
-  'webpage'
-];
+
 
 var replacements = {
-	"he": :"they", "she": "they",
+	"he":"they", "she": "they",
 	"his": "their", "her": "their",
 	"him": "them", "her": "them",
 	"boy": "person", "girl": "person", "man": "person", "woman": "person",
@@ -47,7 +43,8 @@ function textReplace(textNode, dictionary) {
   dictionary.forEach(function(bias) {
     content = content.split(bias).join(`<span class=' blocked ${dictionary.indexOf(bias)}'>${bias}</span>`);
   });
-  replacementDict.forEach(function(bias) {
+  console.log(replacements);
+  Object.keys(replacements).forEach(function(bias) {
     content = content.split(bias).join(`<span class=' replaced'>${replacements[bias]}</span>`);
   });
   textNode.innerHTML = content;
