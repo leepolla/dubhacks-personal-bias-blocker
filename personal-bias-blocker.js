@@ -32,7 +32,7 @@ function nodeReplace(node, dictionary) {
 function textReplace(textNode, dictionary) {
   let content = textNode.innerHTML;
   dictionary.forEach(function(bias) {
-    content = content.split(bias).join(`<span class='${dictionary.indexOf(bias)}'>${bias}</span>`);
+    content = content.split(bias).join(`<span class=' blocked ${dictionary.indexOf(bias)}'>${bias}</span>`);
   });
   textNode.innerHTML = content;
 }
