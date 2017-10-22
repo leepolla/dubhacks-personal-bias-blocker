@@ -61,6 +61,9 @@ function senseReplace() {
 	changes.forEach(function(change) {
 		change.addEventListener("mouseover", function(){
 			var temp = change.innerHTML;
+			if (temp.length > change.attributes.value.value.length) {
+				change.attributes.value.value += "*".repeat(temp.length - change.attributes.value.value.length);
+			}
 			change.innerHTML = change.attributes.value.value;
 			change.attributes.value.value = temp;
 		});
