@@ -24,13 +24,16 @@ function keypress(event){
 
 //console.log(document.getElementsByClassName("onoffswitch"));
 var toggleSwitch = document.getElementsByClassName("onoffswitch-checkbox")[0];
-var message = {greeting: "hello", onoff: true, wacky: false};
+console.log(localStorage);
+let disabled = localStorage.getItem('onoff');
+console.log(disabled);
+var message = {onoff: disabled ? disabled : false, wacky: false};
 update();
 
 if (document.getElementById("myonoffswitch")) {
 	document.getElementById('myonoffswitch').addEventListener('click', function(){
 			console.log("test");
-			
+                localStorage.setItem('onoff', this.checked);
 				console.log(this.checked);
 				message.onoff = this.checked;
 				console.log("checked/unchecked");
