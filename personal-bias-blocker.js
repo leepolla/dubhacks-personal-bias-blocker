@@ -9,8 +9,19 @@ chrome.runtime.onMessage.addListener(
     localStorage.setItem('onoff', request.onoff);
     localStorage.setItem('wacky', request.wacky);
     console.log(localStorage);
+	
+	if (request.onoff == false) {
+	var changes = document.querySelectorAll(".blocked, .replaced, .showBlocked");
+	changes.forEach(function(change) {
+		change.classList.remove("blocked");
+		change.classList.remove("replaced");
+		change.classList.remove("showBlocked");
+		console.log(change.EventListener);
+		change.removeEventListener("mouseover", over, false);
+		change.removeEventListener("mouseout", out, false);
+	});
   }
-);
+  });
 
 
 nodeReplace(document.body);
@@ -64,28 +75,34 @@ function textReplace(textNode) {
   textNode.innerHTML = content;
 }
 
+function over() {
+	console.log(this);
+	var change = this;
+	var temp = change.innerHTML;
+if (temp.length > change.attributes.value.value.length) {
+				change.attributes.value.value += "&nbsp;".repeat(temp.length - change.attributes.value.value.length);
+			}
+			change.innerHTML = change.attributes.value.value;
+			change.attributes.value.value = temp;
+}
 
+function out() {
+	console.log(this);
+	var change = this;
+	var temp = change.innerHTML;
+	change.innerHTML = change.attributes.value.value;
+	change.attributes.value.value = temp;
+}
 
 function senseReplaceHover(className) {
 	var changes = document.querySelectorAll(`.${className}`);
 	//mouseover
 	changes.forEach(function(change) {
-		change.addEventListener("mouseover", function(){
-			var temp = change.innerHTML;
-			if (temp.length > change.attributes.value.value.length) {
-				change.attributes.value.value += "&nbsp;".repeat(temp.length - change.attributes.value.value.length);
-			}
-			change.innerHTML = change.attributes.value.value;
-			change.attributes.value.value = temp;
-		});
+		change.addEventListener("mouseover", over, false);
 	});
 	//mouseout
 	changes.forEach(function(change) {
-		change.addEventListener("mouseout", function(){
-			var temp = change.innerHTML;
-			change.innerHTML = change.attributes.value.value;
-			change.attributes.value.value = temp;
-		});
+		change.addEventListener("mouseout", out, false);
 	});
 }
 
