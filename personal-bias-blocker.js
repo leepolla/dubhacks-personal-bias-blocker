@@ -1,15 +1,23 @@
 
-const dictionary = importDictionary("dictionary.json");
-const wackyDict = importDictionary("wacky-dictionary.json");
+var dictionary = importDictionary("dictionary.json");
+var wackyDict = importDictionary("wacky-dictionary.json");
 
-const replacements = importDictionary("replacements.json");
+var replacements = importDictionary("replacements.json");
 
-nodeReplace(document.body, dictionary);
+nodeReplace(document.body);
 senseReplace();
 
-function nodeReplace(node, dictionary) {
+chrome.runtime.onMessage.addListener(
+  function(request, sender, sendResponse) {
+    console.log(sender.tab ?
+                "from a content script:" + sender.tab.url :
+                "from the extension");
+    if (request.greeting == "hello")
+      sendResponse({farewell: "goodbye"});
+  });
+
+function nodeReplace(node) {
   let child, next;
-  let wackyMode = true;
 
   switch (node.nodeType) {
     case 1:
@@ -18,26 +26,28 @@ function nodeReplace(node, dictionary) {
       child = node.firstChild;
       while (child) {
         next = child.nextSibling;
-        nodeReplace(child, dictionary);
+        nodeReplace(child);
         child = next;
       }
       break;
     case 3:
-      textReplace(node.parentNode, dictionary);
+      textReplace(node.parentNode);
       break;
   }
 }
 
-function textReplace(textNode, dictionary) {
+function textReplace(textNode) {
+  const wackyMode = true;
   let content = textNode.innerHTML;
   Object.keys(dictionary).forEach(function(biasCategoryName) {
     dictionary[biasCategoryName].forEach(function(bias) {
       let replacementWord = bias;
       if (wackyMode) {
-
+        const wackyCategory = wackyDict[biasCategoryName];
+        replacementWord = wackyCategory[Math.floor(Math.random()*wackyCategory.length)];
       }
       const regex = new RegExp(`\\b${bias}\\b`, 'i');
-      content = content.replace(regex, `<span class='blocked'>${replacementWord}</span>`);
+      content = content.replace(regex, `<span class='blocked' value='${bias}'>${replacementWord}</span>`);
     });
   });
   Object.keys(replacements).forEach(function(bias) {
