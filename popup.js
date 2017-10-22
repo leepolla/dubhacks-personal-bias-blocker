@@ -18,22 +18,24 @@ function keypress(event){
         return false;
     }
 }
-console.log(document.getElementsByClassName("onoffswitch"));
-var toggleSwitch = document.getElementById("toggleButton");
-var onOffSwitch = document.getElementById("focus");
-var toggleFocus = document.querySelector("onoffswitch-switch");
 
-toggleSwitch.on('keypress', function(event){
-	if(document.activeElement.id === onOffSwitch) {
+
+
+//console.log(document.getElementsByClassName("onoffswitch"));
+var toggleSwitch = document.getElementsByClassName("onoffswitch-checkbox")[0];
+var message = {greeting: "hello", onoff: true, wacky: "off"};
+console.log(toggleSwitch);
+document.getElementById('myonoffswitch').addEventListener('click', function(){
 		console.log("test");
-		if(keypress(event) === true){
-			console.log(event.keyCode);
-			toggle.trigger("click");
+		
+			console.log(message);
+			message.onoff = !message.onoff;
 			console.log("checked/unchecked");
-	    }
-	}
+	    
+});
+
 chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-  chrome.tabs.sendMessage(tabs[0].id, {greeting: "hello"}, function(response) {
+  chrome.tabs.sendMessage(tabs[0].id, message, function(response) {
     console.log(response.farewell);
   });
 });
