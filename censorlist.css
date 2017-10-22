@@ -1,5 +1,10 @@
 body {
-	width: 300px;
+	width: 200px;
 	background-color: mediumorchid;
 	color: white;
+}
+
+textarea {
+	margin-top: 5px;
+	display: block;
 }
