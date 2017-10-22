@@ -5,8 +5,6 @@ const dictionary = [
   'Latino'
 ];
 
-
-
 var replacements = {
 	"he":"they", "she": "they",
 	"his": "their", "her": "their",
@@ -41,10 +39,12 @@ function nodeReplace(node, dictionary) {
 function textReplace(textNode, dictionary) {
   let content = textNode.innerHTML;
   dictionary.forEach(function(bias) {
-    content = content.split(bias).join(`<span class=' blocked ${dictionary.indexOf(bias)}'>${bias}</span>`);
+    const regex = new RegExp(`\\b${bias}\\b`, 'i');
+    content = content.replace(regex, `<span class=' blocked ${dictionary.indexOf(bias)}'>${bias}</span>`);
   });
   Object.keys(replacements).forEach(function(bias) {
-    content = content.split(bias).join(`<span class=' replaced'>${replacements[bias]}</span>`);
+    const regex = new RegExp(`\\b${bias}\\b`, 'i');
+    content = content.replace(regex, `<span class=' replaced'>${replacements[bias]}</span>`);
   });
   textNode.innerHTML = content;
 }
