@@ -15,6 +15,7 @@ var replacements = {
 };
 
 nodeReplace(document.body, dictionary);
+senseReplace();
 
 function nodeReplace(node, dictionary) {
   let child, next;
@@ -40,11 +41,38 @@ function textReplace(textNode, dictionary) {
   let content = textNode.innerHTML;
   dictionary.forEach(function(bias) {
     const regex = new RegExp(`\\b${bias}\\b`, 'i');
-    content = content.replace(regex, `<span class=' blocked ${dictionary.indexOf(bias)}'>${bias}</span>`);
+    content = content.replace(regex, `<span class='blocked ${dictionary.indexOf(bias)}'>${bias}</span>`);
   });
   Object.keys(replacements).forEach(function(bias) {
     const regex = new RegExp(`\\b${bias}\\b`, 'i');
-    content = content.replace(regex, `<span class=' replaced'>${replacements[bias]}</span>`);
+    content = content.replace(regex, `<span class='replaced' value='${bias}'>${replacements[bias]}</span>`);
+	textNode.value = bias.toString();
   });
   textNode.innerHTML = content;
+}
+
+function originalWord() {
+	
+}
+
+function senseReplace() {
+	var changes = document.querySelectorAll(".replaced");
+	//mouseover
+	changes.forEach(function(change) {
+		change.addEventListener("mouseover", function(){
+			var temp = change.innerHTML;
+			console.log(change.value);
+			change.innerHTML = change.attributes.value.value;
+			change.attributes.value.value = temp;
+		});
+	});
+	//mouseout
+	changes.forEach(function(change) {
+		change.addEventListener("mouseout", function(){
+			var temp = change.innerHTML;
+			console.log(change.value);
+			change.innerHTML = change.attributes.value.value;
+			change.attributes.value.value = temp;
+		});
+	});
 }
