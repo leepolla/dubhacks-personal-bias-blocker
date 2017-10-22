@@ -1,13 +1,14 @@
-a {
+h2, h3, .onoffswitch {
 	padding-left: 1.5rem;
 }
 
-#toggleButton p {
-	overflow: hidden;
+h2, h3 {
+	font-weight: normal;
 }
 
 .onoffswitch {
-    position: relative; width: 48px;
+    position: relative; 
+    width: 48px;
     -webkit-user-select:none; 
     -moz-user-select:none; 
     -ms-user-select: none;

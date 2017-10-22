@@ -13,6 +13,9 @@
 
   "browser_action": {
   	"default_title": "Personal Bias Blocker",
-  	"default_popup": "popup.html"
+  	"default_popup": "popup.html",
+    "default_icon" : {
+      "16": "biaslogo.png"
+    }
   }
 }
