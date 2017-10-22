@@ -1,18 +1,6 @@
 
-const dictionary = [
-  'American',
-  'North Korea',
-  'Latino'
-];
-
-var replacements = {
-	"he":"they", "she": "they",
-	"his": "their", "her": "their",
-	"him": "them", "her": "them",
-	"boy": "person", "girl": "person", "man": "person", "woman": "person",
-	"girls": "people", "women": "people", "men" : "people", "boys" : "people"
-	
-};
+const dictionary = importDictionary("dictionary.txt");
+var replacements = importDictionary("replacements.txt");
 
 nodeReplace(document.body, dictionary);
 senseReplace();
@@ -76,4 +64,11 @@ function senseReplace() {
 			change.attributes.value.value = temp;
 		});
 	});
+}
+
+function importDictionary(filename) {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', chrome.runtime.getURL(filename), false);
+  xhr.send();
+  return xhr.responseText.split("\r\n");
 }
